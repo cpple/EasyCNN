@@ -9,6 +9,7 @@
 #define DECLARE_LAYER_TYPE static const std::string layerType;
 #define DEFINE_LAYER_TYPE(class_type,type_string) const std::string class_type::layerType = type_string; 
 #define FRIEND_WITH_NETWORK friend class NetWork;
+#define FRIEND_WITH_LAYER friend class Layer;
 
 namespace EasyCNN
 {

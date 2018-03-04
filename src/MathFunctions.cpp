@@ -1,7 +1,7 @@
 #include <cmath>
 #include <random>
-#include "EasyCNN/MathFunctions.h"
-#include "EasyCNN/DataBucket.h"
+#include "MathFunctions.h"
+#include "DataBucket.h"
 
 namespace EasyCNN
 {
@@ -12,7 +12,7 @@ namespace EasyCNN
 		std::normal_distribution<float> dist(mean_value, standard_deviation);
 		for (size_t i = 0; i < size; i++)
 		{
-			data[i] = dist(engine);
+			data[i] = 1;
 		}
 	}
 	void uniform_distribution_init(float* data, const size_t size, const float low_value, const float high_deviation)

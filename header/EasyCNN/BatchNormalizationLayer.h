@@ -1,6 +1,6 @@
 #pragma once
-#include "EasyCNN/Configure.h"
-#include "EasyCNN/Layer.h"
+#include "Configure.h"
+#include "Layer.h"
 
 namespace EasyCNN
 {

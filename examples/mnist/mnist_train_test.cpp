@@ -8,6 +8,7 @@
 
 
 const int classes = 10;
+const float eps = 0.00005;
 
 static bool fetch_data(const std::vector<image_t>& images,std::shared_ptr<EasyCNN::DataBucket> inputDataBucket, 
 	const std::vector<label_t>& labels, std::shared_ptr<EasyCNN::DataBucket> labelDataBucket,
@@ -213,6 +214,13 @@ static void add_softmax_layer(EasyCNN::NetWork& network)
 	std::shared_ptr<EasyCNN::SoftmaxLayer> softmaxLayer(std::make_shared<EasyCNN::SoftmaxLayer>());
 	network.addayer(softmaxLayer);
 }
+static void add_bn_layer(EasyCNN::NetWork& network, const float batch)
+{
+    std::shared_ptr<EasyCNN::BatchNormalizationLayer> bnLayer(std::make_shared<EasyCNN::BatchNormalizationLayer>());
+    bnLayer->setNetWork(&network);
+    bnLayer->setParamaters(eps, true, batch);
+    network.addayer(bnLayer);
+}
 static EasyCNN::NetWork buildConvNet(const size_t batch,const size_t channels,const size_t width,const size_t height)
 {
 	EasyCNN::NetWork network;
@@ -223,12 +231,14 @@ static EasyCNN::NetWork buildConvNet(const size_t batch,const size_t channels,co
 
 	//convolution layer
 	add_conv_layer(network, 6 ,1);
+    add_bn_layer(network, batch);
 	add_active_layer(network);
 	//pooling layer
 	add_pool_layer(network, 6);
 
 	//convolution layer
 	add_conv_layer(network, 12, 6);
+    add_bn_layer(network, batch);
 	add_active_layer(network);
 	//pooling layer
 	add_pool_layer(network, 12);

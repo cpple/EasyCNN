@@ -10,6 +10,7 @@ namespace EasyCNN
 {
 	class NetWork
 	{
+        FRIEND_WITH_LAYER
 	public:
 		NetWork();
 		virtual ~NetWork();

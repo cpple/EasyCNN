@@ -1,5 +1,5 @@
-#include "EasyCNN/BatchNormalizationLayer.h"
-#include "EasyCNN/CommonTools.h"
+#include "BatchNormalizationLayer.h"
+#include "CommonTools.h"
 
 namespace EasyCNN
 {
